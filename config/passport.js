@@ -12,7 +12,7 @@ module.exports = passport => {
           if (!user) {
             return done(null, false, { message: 'That email is not registered' })
           }
-          if (user.password != password) {
+          if (user.password !== password) {
             console.log('user password not correct.')
             return done(null, false, { message: 'Email or Password incorrect' })
           }
@@ -26,7 +26,7 @@ module.exports = passport => {
   })
   passport.deserializeUser((id, done) => {
     User.findByPk(id).then((user) => {
-      user = user.get()
+      user = user.get() // 將複雜的資料庫 Object 轉成 JavaScript 原生的簡單物件 (template 可能要用)
       done(null, user)
     })
   })
