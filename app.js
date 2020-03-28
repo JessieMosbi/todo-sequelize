@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.engine('handlebars', exphbs({ defaultLayout: 'main', helpers: require('./handlebarsHelper.js') }))
 app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))
