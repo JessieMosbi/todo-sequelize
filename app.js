@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
+const flash = require('connect-flash')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -18,7 +19,7 @@ app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-
+app.use(flash())
 app.use(session({
   secret: 'Jessie secret key',
   cookie: {
@@ -41,6 +42,10 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.welcome_msg = req.flash('success') // passport
+  res.locals.error_msg = req.flash('error') // passport
+  res.locals.success_msg = req.flash('success_msg') // my own
+  res.locals.warning_msg = req.flash('warning_msg') // my own
   next()
 })
 

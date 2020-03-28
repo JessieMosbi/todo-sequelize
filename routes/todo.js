@@ -40,6 +40,12 @@ router.get('/:id', authenticated, (req, res) => {
 
 // 新增一筆 Todo
 router.post('/', authenticated, (req, res) => {
+  // check value
+  if (!req.body.name.trim()) {
+    res.render('new', { warning_msg: '名稱請勿空白' })
+    return false
+  }
+
   Todo.create({
     name: req.body.name,
     done: false,
@@ -68,6 +74,16 @@ router.get('/:id/edit', authenticated, (req, res) => {
 
 // 修改 Todo
 router.put('/:id', authenticated, (req, res) => {
+  // check value
+  if (!req.body.name.trim()) {
+    const todo = {
+      id: req.params.id,
+      done: req.body.done
+    }
+    res.render('edit', { todo, warning_msg: '名稱請勿空白' })
+    return false
+  }
+
   Todo.findOne({
     where: {
       Id: req.params.id,
