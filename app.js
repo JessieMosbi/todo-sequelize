@@ -21,7 +21,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.use(session({
-  secret: 'your secret key',
+  secret: 'Jessie secret key',
+  cookie: {
+    maxAge: 60 * 30 * 1000 // 30 mins
+  },
   resave: 'false',
   saveUninitialized: 'false',
 }))
@@ -36,13 +39,9 @@ app.use((req, res, next) => {
 })
 
 // 使用路由器
+app.use('/', require('./routes/home'))
 app.use('/users', require('./routes/user'))
-
-// 設定路由
-// 首頁
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
+app.use('/todos', require('./routes/todo'))
 
 // 設定 express port 3000
 app.listen(port, () => {
