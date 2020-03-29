@@ -1,7 +1,7 @@
 # Expense-Tracker
-這是個 todo-list 練習，使用到 [Node.js](https://nodejs.org/en/)、[Express](https://expressjs.com/)、[MySQL]](https://www.mysql.com/)
+這是個 todo-list 練習，使用到 [Node.js](https://nodejs.org/en/)、[Express](https://expressjs.com/)、[MySQL](https://www.mysql.com/)
 
-![scrrenshot]()
+![scrrenshot](https://github.com/JessieMosbi/todo-sequelize/blob/master/image/screenshot.png?raw=true)
 
 ## Requirement
 [Node.js](https://nodejs.org/en/)   
@@ -44,8 +44,8 @@ npm install
 ```
 
 ## Setting
-因此專案有結合 Facebook API，故需在 Facebook for developers 上設定一個應用程式，並把資訊填入 .env 檔才能正常啟用
-.env 請放在根目錄底下
+因此專案有結合 Facebook API，故需在 Facebook for developers 上設定一個應用程式，並把資訊填入 .env 檔才能正常啟用   
+請建立一個 .env 檔案，填入以下 Facebook API 的資訊，並放在根目錄底下
 ```console
 // .env
 FACEBOOK_ID=xxxxxxxx
@@ -55,9 +55,15 @@ FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
 
 ## Executing
 請啟動 MySQL DB（下方圖片以 MAC OS 作為範例，綠燈表示為已啟動）
-![scrrenshot]()
+![scrrenshot](https://github.com/JessieMosbi/todo-sequelize/blob/master/image/MySQL_active.png?raw=true)
 
 請建立一個名為 todo_sequelize 的 Database（可透過 MySQLWorkbench 等 DBMS 工具，以 GUI 的形式進行操作）
+
+進到專案資料夾底下，執行 migrations 檔案，以建立專案所需資料表、欄位
+```console
+cd <Your download directory>/todo-sequelize
+npx sequelize db:migrate
+```
 
 進到專案資料夾底下，用專案已設定的統一指令即可執行專案
 ```console
