@@ -45,7 +45,7 @@ npm install
 
 ## Setting
 因此專案有結合 Facebook API，故需在 Facebook for developers 上設定一個應用程式，並把資訊填入 .env 檔才能正常啟用   
-請建立一個 .env 檔案，填入以下 Facebook API 的資訊，並放在根目錄底下
+請建立一個 .env 檔案，填入以下資訊，並放在根目錄底下
 ```console
 // .env
 FACEBOOK_ID=xxxxxxxx
@@ -85,4 +85,4 @@ MySQL DB 可透過 MySQLWorkbench 等 DBMS 工具，以 GUI 的形式進行操�
 + 點選首頁中的 Create 建立一個代辦事項清單
 + 點選首頁中，任一代辦事項的 Edit，即可進入編輯頁面進行編輯
 + 點選首頁中，任一代辦事項的 Delete，即可刪除資料
-+ 點選首頁中，任一代辦事項的 Detail
++ 點選首頁中，任一代辦事項的 Detail，即可查看詳資料
