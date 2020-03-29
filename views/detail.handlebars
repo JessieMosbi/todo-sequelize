@@ -6,9 +6,13 @@
       </div>
     </div>
     <input type="text" placeholder="name" name="name" value="{{{todo.name}}}" class="form-control" disabled>
-    <div class="input-group-append">
-      <a href="/todos/{{{todo.id}}}/edit" class="btn btn-success">edit</a>
-      <button type="submit" class="btn btn-danger">delete</button>
-    </div>
+  </div>
+  <div class="form-group">
+    <label for="memo">Memo</label>
+    <textarea class="form-control" id="memo" name="memo" rows="3" disabled>{{{todo.memo}}}</textarea>
+  </div>
+  <div class="text-center">
+    <a href="/todos/{{{todo.id}}}/edit" class="btn btn-success">edit</a>
+    <button type="submit" class="btn btn-danger">delete</button>
   </div>
 </form>

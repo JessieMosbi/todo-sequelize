@@ -2,8 +2,12 @@
   {{>messages}}
   <div class="input-group mb-3">
     <input type="text" placeholder="name" name="name" class="form-control" required="required">
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-success">Create</button>
-    </div>
+  </div>
+  <div class="form-group">
+    <label for="memo">Memo</label>
+    <textarea class="form-control" id="memo" name="memo" rows="3">{{{memo}}}</textarea>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-success">Create</button>
   </div>
 </form>

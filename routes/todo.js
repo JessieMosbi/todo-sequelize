@@ -42,14 +42,15 @@ router.get('/:id', authenticated, (req, res) => {
 router.post('/', authenticated, (req, res) => {
   // check value
   if (!req.body.name.trim()) {
-    res.render('new', { warning_msg: '名稱請勿空白' })
+    res.render('new', { warning_msg: '名稱請勿空白', memo: req.body.memo })
     return false
   }
 
   Todo.create({
     name: req.body.name,
     done: false,
-    UserId: req.user.id
+    UserId: req.user.id,
+    memo: req.body.memo
   })
     .then((todo) => {
       return res.redirect('/')
@@ -78,7 +79,8 @@ router.put('/:id', authenticated, (req, res) => {
   if (!req.body.name.trim()) {
     const todo = {
       id: req.params.id,
-      done: req.body.done
+      done: req.body.done,
+      memo: req.body.memo
     }
     res.render('edit', { todo, warning_msg: '名稱請勿空白' })
     return false
@@ -93,6 +95,7 @@ router.put('/:id', authenticated, (req, res) => {
     .then((todo) => {
       todo.name = req.body.name
       todo.done = req.body.done === 'on'
+      todo.memo = req.body.memo
 
       return todo.save()
     })
