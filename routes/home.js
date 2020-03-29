@@ -23,23 +23,44 @@ const { Op } = require('sequelize')
 // 列出全部 Todo
 router.get('/', authenticated, (req, res) => {
   // sql where condition
-  const whereCond = { UserId: req.user.id }
+  let whereCond = { UserId: req.user.id }
   let selType = req.query.type
   if (selType && selType !== 'all') whereCond.done = selType
   else selType = 'all'
 
   const selDate = req.query.date
+
   if (selDate) {
     // whereCond.createdAt = { [Op.like]: selDate + '%' }
     // whereCond.updatedAt = { [Op.like]: selDate + '%' }
+    // WHERE UserId=xx AND ( (createdAt and...) OR (updatedAt and..) )
     const tmpDate = new Date(selDate)
-    if (selType === 'all' || selType === '0') {
+    if (selType === 'all') {
+      whereCond = {
+        UserId: req.user.id,
+        [Op.or]: [
+          {
+            createdAt: {
+              [Op.lt]: tmpDate.setDate(tmpDate.getDate() + 1),
+              [Op.gte]: tmpDate.setDate(tmpDate.getDate() - 1)
+            }
+          },
+          {
+            updatedAt: {
+              [Op.lt]: tmpDate.setDate(tmpDate.getDate() + 1),
+              [Op.gte]: tmpDate.setDate(tmpDate.getDate() - 1)
+            }
+          }
+        ]
+      }
+    }
+    if (selType === '0') {
       whereCond.createdAt = {
         [Op.lt]: tmpDate.setDate(tmpDate.getDate() + 1), // < value
         [Op.gte]: tmpDate.setDate(tmpDate.getDate() - 1) // >= value (tmpData already +1, then -1 to become original)
       }
     }
-    if (selType === 'all' || selType === '1') {
+    if (selType === '1') {
       whereCond.updatedAt = {
         [Op.lt]: tmpDate.setDate(tmpDate.getDate() + 1),
         [Op.gte]: tmpDate.setDate(tmpDate.getDate() - 1)
