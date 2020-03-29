@@ -1,5 +1,5 @@
-# Expense-Tracker
-這是個 todo-list 練習，使用到 [Node.js](https://nodejs.org/en/)、[Express](https://expressjs.com/)、[MySQL](https://www.mysql.com/)
+# Todo-Sequelize
+這是個 todo-list 練習，使用到 [Node.js](https://nodejs.org/en/)、[Express](https://expressjs.com/)、[MySQL](https://www.mysql.com/)、[Sequelize](https://sequelize.org/)
 
 ![scrrenshot](https://github.com/JessieMosbi/todo-sequelize/blob/master/image/screenshot.png?raw=true)
 
