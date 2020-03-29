@@ -57,7 +57,11 @@ FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
 請啟動 MySQL DB（下方圖片以 MAC OS 作為範例，綠燈表示為已啟動）
 ![scrrenshot](https://github.com/JessieMosbi/todo-sequelize/blob/master/image/MySQL_active.png?raw=true)
 
-請建立一個名為 todo_sequelize 的 Database（可透過 MySQLWorkbench 等 DBMS 工具，以 GUI 的形式進行操作）
+請建立一個名為 todo_sequelize 的 Database，下方為 sql 語法
+```console
+drop database if exists todo_sequelize;
+create database todo_sequelize;
+```
 
 進到專案資料夾底下，執行 migrations 檔案，以建立專案所需資料表、欄位
 ```console
@@ -65,16 +69,15 @@ cd <Your download directory>/todo-sequelize
 npx sequelize db:migrate
 ```
 
-進到專案資料夾底下，用專案已設定的統一指令即可執行專案
+最後，以專案已設定的統一指令，即可執行專案
 ```console
-cd <Your download directory>/todo-sequelize
 npm run dev
 ```
 
 預設 port 為 3000，請直接打開瀏覽器，並在 URL 輸入 http://localhost:3000/ 即可瀏覽網頁
 
 ## Other steps
-
+MySQL DB 可透過 MySQLWorkbench 等 DBMS 工具，以 GUI 的形式進行操作，會較方便觀看資料
 
 ## Features
 + 註冊、登入（可用 Facebook 登入）
